@@ -1,0 +1,66 @@
+<html>
+<head>
+  <link rel="stylesheet" href="css-parallax.css">
+  <script src="babel-parallax.js" type="text/babel"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.18.1/babel.min.js"></script>
+  <script src="jquery.js"></script>
+  <script src="resources.js"></script>
+
+    <script src="https://embed.runkit.com"></script>
+    <style>.embed {
+        overflow: visible;
+        width: 75%;
+        display: block;
+        margin: auto;
+        border: 0px solid black;
+        width: 75%;
+        padding: 10px;
+    }
+    .center {
+        overflow: visible;
+        width: 75%;
+        display: block;
+        margin: auto;
+        border: 0px solid black;
+        width: 75%;
+        padding: 10px;
+    }
+    </style>
+
+</head>
+<body>
+  <pre class="embed" data-gutter="inside">alert("Obfuscated with TerserFlow!");</pre>
+  <script>
+        const elements = [...document.getElementsByClassName('embed')]
+        const notebooks = elements.reduce((notebooks, element) => {
+            const innerText = element.firstChild
+            const currentCell = window.RunKit.createNotebook({
+                element,
+                gutterStyle: element.getAttribute("data-gutter"),
+                source: innerText.textContent,
+                // Remove the text content of the pre tag after the embed has loaded
+                onLoad: () => innerText.remove()
+            })
+            return currentCell;
+        }, [])
+        async function test() {
+            return await notebooks.getSource();
+        }
+    </script>
+    <br>
+    <p>
+    <a data-title="Obfuscate Code" id="btn"></a>
+    </p>
+    <script>
+      document.getElementById("btn").addEventListener("click", async () => {
+let output = httpGet(`/obfuscate?code=` + escape(await notebooks.getSource()));
+if (confirm("Would you like to copy the obfuscated code to your clipboard?")) {
+  copy(output)
+}
+
+      })
+      </script>
+  
+
+</body>
+</html>

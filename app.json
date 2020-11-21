@@ -1,0 +1,8 @@
+{
+  "name": "TerserFlow",
+  "description": "An online Node.js and JavaScript obfuscator using the npm package TerserFlow",
+  "repository": "https://github.com/AfroYousef/TerserFlowPub",
+  "logo": "https://cdn.rawgit.com/heroku/node-js-getting-started/main/public/node.svg",
+  "keywords": ["node", "express", "heroku", "obfuscator", "terser", "javascript", "node.js", "nodejs"],
+  "image": "heroku/nodejs"
+}
