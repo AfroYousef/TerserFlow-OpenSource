@@ -3,7 +3,6 @@ function copy(input) {
 }
 function httpGet(theUrl) {
     var xmlHttp = new XMLHttpRequest();
-    theUrl = "https://api.tf.yousefak.com" + theUrl
     xmlHttp.open( "GET", theUrl, false ); // false for synchronous request
     xmlHttp.send( null );
     return xmlHttp.responseText;
